@@ -19,7 +19,10 @@ public class Producer {
     public  static void main(String[] argv)
             throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost("192.168.2.238");
+        factory.setUsername("luciano");
+        factory.setPassword("luciano");
+        factory.setPort(5672);
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         channel.queueDeclare(QUEUE_NAME,
@@ -27,7 +30,7 @@ public class Producer {
                 false,
                 false,
                 null);
-        String message = "Bem vindo ao RabbitMQ Luciano!";
+        String message = "Enviando de outro PC!";
         channel.basicPublish("",
                 QUEUE_NAME,
                 null,
